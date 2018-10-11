@@ -1,5 +1,7 @@
 # README
 
+This Create-React-App on Rails.
+
 In order to start the app,
 
 ```
