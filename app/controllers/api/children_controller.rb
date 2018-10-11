@@ -5,6 +5,12 @@ class Api::ChildrenController < ApplicationController
         render json: @children
     end
 
+    def index_all
+        @children_all = Child.all
+        render json: @children_all
+
+    end
+
     def create
         @employee = Employee.find(params[:employee_id])
         @child = @employee.children.create(child_params)

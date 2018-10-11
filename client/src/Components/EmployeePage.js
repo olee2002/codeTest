@@ -8,14 +8,16 @@ export default class EmployeeList extends Component {
 
     state = {
         employee: {},
-        edited: false
+        edited: false,
+        children: []
     }
 
     componentDidMount = () => {
         const id = this.props.match.params.employeeId
         axios.get(`/api/employees/${id}`)
             .then(res => this.setState({ employee: res.data }))
-        console.log(this.state.employee)
+        axios.get(`/api/employees/${id}/children`)
+            .then(res => this.setState({ children: res.data }))
     }
 
     handleEdit = () => {
@@ -23,13 +25,12 @@ export default class EmployeeList extends Component {
     }
 
     render() {
-        const { employee, edited } = this.state
+        const { employee, children, edited } = this.state
         return (
             <div className='container'>
                 <h2>Employee Information</h2>
                 <table className='table'>
                     <tr>
-                        <th>Id</th>
                         <th>Birth Date</th>
                         <th>First Name</th>
                         <th>Last Name</th>
@@ -50,6 +51,29 @@ export default class EmployeeList extends Component {
                 </table>
                 <hr />
                 {edited ? <EmployeeForm employee={employee} /> : null}
+
+                <h4>Children List </h4>
+                {children.length ?
+                    <table className='table'>
+                        <tr>
+                            <th>ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Birth Date</th>
+                            <th>Gender</th>
+                        </tr>
+                        {children.map(c =>
+                            <tr>
+                                <td>{c.id}</td>
+                                <td>{c.first_name}</td>
+                                <td>{c.last_name}</td>
+                                <td>{c.birth_date}</td>
+                                <td>{c.gender}</td>
+                            </tr>
+                        )}
+                    </table>
+                    : "This employee doesn't have a child"}
+
             </div>
         )
     }

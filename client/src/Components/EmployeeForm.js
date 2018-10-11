@@ -17,9 +17,12 @@ export default class EmployeeForm extends Component {
 
     handleSubmit = () => {
         const { birth_date, first_name, last_name, gender, title } = this.state
-        const { employee } = this.props
+        const { employee, open } = this.props
         const payload = { birth_date, first_name, last_name, gender, title }
-        axios.put(`/api/employees/${employee.id}`, payload)
+        open ?
+            axios.post('/api/employees', payload)
+            :
+            axios.put(`/api/employees/${employee.id}`, payload)
     }
 
     handleChange = name => e => {
