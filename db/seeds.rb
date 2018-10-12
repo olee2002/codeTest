@@ -66,15 +66,15 @@ julie = linda.children.create(
     birth_date: '11/19/1996'
 )
 
-# taylor = james.children.create(
-#     first_name: 'Taylor',
-#     last_name: 'Smith',
-#     gender: 'M',
-#     birth_date: '07/09/1998'
-# )
-# benjamin = james.children.create(
-#     first_name: 'Benjamin',
-#     last_name: 'Smith',
-#     gender: 'M',
-#     birth_date: '03/24/1992'
-# )
+taylor = catherine.children.create(
+    first_name: 'Taylor',
+    last_name: 'Smith',
+    gender: 'M',
+    birth_date: '07/09/1998'
+)
+benjamin = joseph.children.create(
+    first_name: 'Benjamin',
+    last_name: 'Smith',
+    gender: 'M',
+    birth_date: '03/24/1992'
+)
